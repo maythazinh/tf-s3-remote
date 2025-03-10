@@ -1,6 +1,6 @@
 # S3 Remote Backend-by-terraform
 
-![image.png](S3%20Remote%20Backend-by-terraform%201af0c05aa8e48066a857e2b089dad6a8/image.png)
+![image.png](./image.png)
 
 # Terraform Note
 
