@@ -1,0 +1,51 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Sid": "ListBucketForState",
+			"Effect": "Allow",
+			"Action": "s3:ListBucket",
+			"Resource": "arn:aws:s3:::s3remote-by-terraform",
+			"Condition": {
+				"StringLike": {
+					"s3:prefix": [
+						"vpc/*",
+						"ec2/*"
+					]
+				}
+			}
+		},
+		{
+			"Sid": "StateFileOperations",
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject",
+				"s3:PutObject",
+				"s3:DeleteObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::s3remote-by-terraform/vpc/terraform.tfstate",
+				"arn:aws:s3:::s3remote-by-terraform/ec2/terraform.tfstate"
+			]
+		},
+		{
+			"Sid": "LockFileOperations",
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject",
+				"s3:PutObject",
+				"s3:DeleteObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::s3remote-by-terraform/vpc/terraform.tfstate.tflock",
+				"arn:aws:s3:::s3remote-by-terraform/ec2/terraform.tfstate.tflock"
+			]
+		},
+		{
+			"Sid": "ListAllBuckets",
+			"Effect": "Allow",
+			"Action": "s3:ListAllMyBuckets",
+			"Resource": "*"
+		}
+	]
+}
