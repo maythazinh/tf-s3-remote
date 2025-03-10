@@ -1,0 +1,38 @@
+{
+	"Version": "2012-10-17",
+	"Statement": [
+		{
+			"Effect": "Allow",
+			"Action": "s3:ListBucket",
+			"Resource": "arn:aws:s3:::mybucket",
+			"Condition": {
+				"StringEquals": {
+					"s3:prefix": "test-ec2/"
+				}
+			}
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject",
+				"s3:PutObject",
+				"s3:DeleteObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::terraform-test-state-lab",
+				"arn:aws:s3:::terraform-test-state-lab/*"
+			]
+		},
+		{
+			"Effect": "Allow",
+			"Action": [
+				"s3:GetObject",
+				"s3:PutObject",
+				"s3:DeleteObject"
+			],
+			"Resource": [
+				"arn:aws:s3:::terraform-test-state-lab/test-ec2/terraform.tfstate.tflock"
+			]
+		}
+	]
+}
